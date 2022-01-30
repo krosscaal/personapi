@@ -1,9 +1,11 @@
 package dio.projetos.personapi.controller;
 
+import dio.projetos.personapi.dto.request.PersonDTO;
 import dio.projetos.personapi.dto.response.MessageResponseDto;
 import dio.projetos.personapi.entitie.Person;
 import dio.projetos.personapi.repository.PersonRepository;
 import dio.projetos.personapi.service.PersonService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -27,8 +29,8 @@ public class PersonController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public MessageResponseDto create(@RequestBody Person person){
-    return personService.create(person);
+  public MessageResponseDto create(@RequestBody @Valid PersonDTO personDTO){
+    return personService.create(personDTO);
   }
 
 }
